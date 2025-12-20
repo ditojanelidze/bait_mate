@@ -1,14 +1,30 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # Health check
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+  # Authentication - Registration
+  get "register", to: "registrations#new", as: :new_registration
+  post "register", to: "registrations#create", as: :registration
+  get "register/verify", to: "registrations#verify", as: :verify_registration
+  post "register/confirm", to: "registrations#confirm", as: :confirm_registration
+  post "register/resend", to: "registrations#resend_code", as: :resend_registration_code
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # Authentication - Sessions (Login)
+  get "login", to: "sessions#new", as: :new_session
+  post "login", to: "sessions#create", as: :session
+  get "login/verify", to: "sessions#verify", as: :verify_session
+  post "login/confirm", to: "sessions#confirm", as: :confirm_session
+  post "login/resend", to: "sessions#resend_code", as: :resend_session_code
+  delete "logout", to: "sessions#destroy", as: :logout
+
+  # Profile
+  get "profile", to: "profiles#show", as: :profile
+  get "profile/edit", to: "profiles#edit", as: :edit_profile
+  patch "profile", to: "profiles#update", as: :update_profile
+
+  # Posts (News Feed)
+  resources :posts
+
+  # Root path - News Feed
+  root "posts#index"
 end

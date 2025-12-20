@@ -1,0 +1,170 @@
+ka:
+  # Application name
+  app_name: "Bait Mate"
+
+  # Navigation
+  nav:
+    home: "მთავარი"
+    login: "შესვლა"
+    register: "რეგისტრაცია"
+    logout: "გასვლა"
+    profile: "პროფილი"
+    new_post: "ახალი პოსტი"
+
+  # Authentication
+  auth:
+    login_required: "გთხოვთ, გაიაროთ ავტორიზაცია"
+    profile_incomplete: "გთხოვთ, დაასრულოთ პროფილი"
+    phone_already_registered: "ეს ტელეფონის ნომერი უკვე რეგისტრირებულია"
+    phone_not_found: "ტელეფონის ნომერი ვერ მოიძებნა"
+    invalid_code: "არასწორი კოდი ან ვადა ამოიწურა"
+    code_resent: "კოდი ხელახლა გაიგზავნა"
+    registration_success: "რეგისტრაცია წარმატებით დასრულდა"
+    login_success: "წარმატებით შეხვედით სისტემაში"
+    logout_success: "წარმატებით გახვედით სისტემიდან"
+
+  # Registration page
+  registration:
+    title: "რეგისტრაცია"
+    first_name: "სახელი"
+    last_name: "გვარი"
+    phone_number: "ტელეფონის ნომერი"
+    phone_placeholder: "+995..."
+    submit: "რეგისტრაცია"
+    have_account: "უკვე გაქვთ ანგარიში?"
+    login_link: "შესვლა"
+
+  # Verification page
+  verification:
+    title: "კოდის დადასტურება"
+    description: "შეიყვანეთ SMS-ით მიღებული 6-ნიშნა კოდი"
+    code_label: "დამადასტურებელი კოდი"
+    code_placeholder: "შეიყვანეთ კოდი"
+    submit: "დადასტურება"
+    resend: "კოდის ხელახლა გაგზავნა"
+    sent_to: "კოდი გაგზავნილია ნომერზე:"
+
+  # Login page
+  login:
+    title: "შესვლა"
+    phone_number: "ტელეფონის ნომერი"
+    phone_placeholder: "+995..."
+    submit: "შესვლა"
+    no_account: "არ გაქვთ ანგარიში?"
+    register_link: "რეგისტრაცია"
+
+  # Profile
+  profile:
+    title: "პროფილი"
+    edit_title: "პროფილის რედაქტირება"
+    first_name: "სახელი"
+    last_name: "გვარი"
+    avatar: "პროფილის სურათი"
+    avatar_hint: "ატვირთეთ თქვენი ფოტო"
+    submit: "შენახვა"
+    update_success: "პროფილი წარმატებით განახლდა"
+    change_avatar: "სურათის შეცვლა"
+
+  # Posts
+  posts:
+    title: "სიახლეები"
+    new: "ახალი პოსტი"
+    edit: "რედაქტირება"
+    delete: "წაშლა"
+    delete_confirm: "დარწმუნებული ხართ?"
+    create_success: "პოსტი წარმატებით შეიქმნა"
+    update_success: "პოსტი წარმატებით განახლდა"
+    delete_success: "პოსტი წარმატებით წაიშალა"
+    unauthorized: "თქვენ არ გაქვთ ამ მოქმედების უფლება"
+    no_posts: "პოსტები ჯერ არ არის"
+
+    # Post form fields
+    image: "სურათი"
+    image_hint: "ატვირთეთ თევზის ფოტო"
+    change_image: "სურათის შეცვლა"
+    description: "აღწერა"
+    description_placeholder: "მოყევით თქვენს გამოცდილებაზე..."
+    specie: "თევზის სახეობა"
+    specie_placeholder: "მაგ: კობრი, ქაშაყი, კალმახი..."
+    location: "ადგილმდებარეობა"
+    location_placeholder: "სად დაიჭირეთ?"
+    rod: "შოლტი"
+    rod_placeholder: "რა შოლტით იყენებდით?"
+    bait: "საკვები/მოტყუება"
+    bait_placeholder: "რა საკვებს იყენებდით?"
+    submit: "გამოქვეყნება"
+    update: "განახლება"
+
+  # ActiveRecord errors
+  errors:
+    messages:
+      required: "აუცილებელია"
+
+  activerecord:
+    errors:
+      messages:
+        required: "აუცილებელია"
+      models:
+        user:
+          attributes:
+            first_name:
+              blank: "სახელი აუცილებელია"
+            last_name:
+              blank: "გვარი აუცილებელია"
+            phone_number:
+              blank: "ტელეფონის ნომერი აუცილებელია"
+              taken: "ეს ნომერი უკვე რეგისტრირებულია"
+              invalid_phone_format: "არასწორი ფორმატი"
+            avatar:
+              blank: "პროფილის სურათი აუცილებელია"
+        post:
+          attributes:
+            user:
+              required: "მომხმარებელი აუცილებელია"
+            image:
+              blank: "სურათი აუცილებელია"
+            description:
+              blank: "აღწერა აუცილებელია"
+            specie:
+              blank: "სახეობა აუცილებელია"
+            location:
+              blank: "ადგილმდებარეობა აუცილებელია"
+            rod:
+              blank: "შოლტი აუცილებელია"
+            bait:
+              blank: "საკვები აუცილებელია"
+
+  # Date/Time formats
+  time:
+    formats:
+      default: "%d %B, %Y %H:%M"
+      short: "%d %b"
+      long: "%d %B %Y"
+
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%d %b"
+      long: "%d %B %Y"
+    day_names:
+      - კვირა
+      - ორშაბათი
+      - სამშაბათი
+      - ოთხშაბათი
+      - ხუთშაბათი
+      - პარასკევი
+      - შაბათი
+    month_names:
+      - ~
+      - იანვარი
+      - თებერვალი
+      - მარტი
+      - აპრილი
+      - მაისი
+      - ივნისი
+      - ივლისი
+      - აგვისტო
+      - სექტემბერი
+      - ოქტომბერი
+      - ნოემბერი
+      - დეკემბერი
