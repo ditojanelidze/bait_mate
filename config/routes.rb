@@ -23,7 +23,10 @@ Rails.application.routes.draw do
   patch "profile", to: "profiles#update", as: :update_profile
 
   # Posts (News Feed)
-  resources :posts
+  resources :posts do
+    resources :comments, only: [:index, :create, :destroy]
+    resource :like, only: [:create, :destroy]
+  end
 
   # Root path - News Feed
   root "posts#index"

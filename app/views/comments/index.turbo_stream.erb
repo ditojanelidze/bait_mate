@@ -1,0 +1,23 @@
+<% @comments.each do |comment| %>
+  <%= turbo_stream.append "comments_container_#{@post.id}" do %>
+    <%= render "comments/comment", comment: comment %>
+  <% end %>
+<% end %>
+
+<% if @remaining > 0 %>
+  <%= turbo_stream.replace "load_more_comments_#{@post.id}" do %>
+    <div id="load_more_comments_<%= @post.id %>" class="py-3 text-center">
+      <%= link_to t("comments.show_more", count: @remaining),
+          "#",
+          class: "text-blue-600 hover:underline text-sm",
+          data: {
+            controller: "load-more-comments",
+            load_more_comments_post_id_value: @post.id,
+            load_more_comments_offset_value: @offset + 10,
+            action: "click->load-more-comments#load"
+          } %>
+    </div>
+  <% end %>
+<% else %>
+  <%= turbo_stream.remove "load_more_comments_#{@post.id}" %>
+<% end %>

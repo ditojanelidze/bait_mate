@@ -33,7 +33,7 @@
     <div class="p-4">
       <p class="text-gray-800 mb-4 text-lg"><%= @post.description %></p>
 
-      <div class="space-y-2">
+      <div class="space-y-2 mb-4">
         <div class="flex items-center bg-blue-50 rounded-lg p-3">
           <span class="text-blue-600 font-medium w-32"><%= t("posts.specie") %>:</span>
           <span class="text-gray-700"><%= @post.specie %></span>
@@ -51,6 +51,12 @@
           <span class="text-gray-700"><%= @post.bait %></span>
         </div>
       </div>
+
+      <!-- Like Button -->
+      <%= render "likes/like_button", post: @post %>
+
+      <!-- Comments Section -->
+      <%= render "comments/comments_section", post: @post %>
     </div>
   </article>
 

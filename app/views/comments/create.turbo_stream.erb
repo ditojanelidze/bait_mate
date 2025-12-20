@@ -1,0 +1,9 @@
+<%= turbo_stream.append "comments_container_#{@post.id}" do %>
+  <%= render "comments/comment", comment: @comment %>
+<% end %>
+
+<%= turbo_stream.replace "comment_form" do %>
+  <%= render "comments/form", post: @post, comment: @post.comments.build %>
+<% end %>
+
+<%= turbo_stream.update "comments_count_#{@post.id}", @post.reload.comments_count %>

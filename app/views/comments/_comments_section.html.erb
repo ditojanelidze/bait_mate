@@ -1,0 +1,39 @@
+<div class="mt-4 border-t border-gray-200 pt-4" id="comments_section_<%= post.id %>">
+  <!-- Comments Count Header -->
+  <div class="flex items-center justify-between mb-4">
+    <h3 class="text-sm font-medium text-gray-700">
+      <%= t("comments.title") %> (<span id="comments_count_<%= post.id %>"><%= post.comments_count %></span>)
+    </h3>
+  </div>
+
+  <!-- Comment Form -->
+  <% if logged_in? %>
+    <div class="mb-4">
+      <%= render "comments/form", post: post, comment: post.comments.build %>
+    </div>
+  <% end %>
+
+  <!-- Comments List with Turbo Frame for pagination -->
+  <%= turbo_frame_tag "comments_list_#{post.id}" do %>
+    <div id="comments_container_<%= post.id %>" class="space-y-0">
+      <% comments = post.comments.includes(:user).limit(10) %>
+      <% comments.each do |comment| %>
+        <%= render "comments/comment", comment: comment %>
+      <% end %>
+
+      <% if post.comments_count > 10 %>
+        <div id="load_more_comments_<%= post.id %>" class="py-3 text-center">
+          <%= link_to t("comments.show_more", count: post.comments_count - 10),
+              "#",
+              class: "text-blue-600 hover:underline text-sm",
+              data: {
+                controller: "load-more-comments",
+                load_more_comments_post_id_value: post.id,
+                load_more_comments_offset_value: 10,
+                action: "click->load-more-comments#load"
+              } %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

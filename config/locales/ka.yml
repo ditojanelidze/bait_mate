@@ -95,6 +95,20 @@ ka:
     submit: "გამოქვეყნება"
     update: "განახლება"
 
+  # Comments
+  comments:
+    title: "კომენტარები"
+    placeholder: "დაწერეთ კომენტარი..."
+    submit: "გაგზავნა"
+    delete_confirm: "წავშალოთ კომენტარი?"
+    unauthorized: "თქვენ არ გაქვთ ამ მოქმედების უფლება"
+    show_more: "მეტის ნახვა (%{count})"
+
+  # Likes
+  likes:
+    like: "მოწონება"
+    unlike: "მოწონების გაუქმება"
+
   # ActiveRecord errors
   errors:
     messages:
@@ -133,6 +147,10 @@ ka:
               blank: "შოლტი აუცილებელია"
             bait:
               blank: "საკვები აუცილებელია"
+        comment:
+          attributes:
+            body:
+              blank: "კომენტარი არ შეიძლება იყოს ცარიელი"
 
   # Date/Time formats
   time:

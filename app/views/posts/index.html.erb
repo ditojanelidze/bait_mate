@@ -42,7 +42,7 @@
           <div class="p-4">
             <p class="text-gray-800 mb-3"><%= post.description %></p>
 
-            <div class="grid grid-cols-2 gap-2 text-sm">
+            <div class="grid grid-cols-2 gap-2 text-sm mb-4">
               <div class="bg-blue-50 rounded-lg p-2">
                 <span class="text-blue-600 font-medium"><%= t("posts.specie") %>:</span>
                 <span class="text-gray-700"><%= post.specie %></span>
@@ -60,6 +60,9 @@
                 <span class="text-gray-700"><%= post.bait %></span>
               </div>
             </div>
+
+            <!-- Like Button and Comments Link -->
+            <%= render "likes/like_button", post: post %>
           </div>
         </article>
       <% end %>
