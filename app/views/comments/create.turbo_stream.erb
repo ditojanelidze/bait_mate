@@ -1,9 +1,25 @@
+<%# Append to regular comments container %>
 <%= turbo_stream.append "comments_container_#{@post.id}" do %>
   <%= render "comments/comment", comment: @comment %>
 <% end %>
 
+<%# Append to modal comments list %>
+<%= turbo_stream.append "modal_comments_list_#{@post.id}" do %>
+  <%= render "comments/comment", comment: @comment %>
+<% end %>
+
+<%# Remove "no comments" message if present %>
+<%= turbo_stream.remove "modal_no_comments_#{@post.id}" %>
+
+<%# Replace regular form %>
 <%= turbo_stream.replace "comment_form" do %>
   <%= render "comments/form", post: @post, comment: @post.comments.build %>
 <% end %>
 
+<%# Replace modal form %>
+<%= turbo_stream.replace "modal_comment_form_#{@post.id}" do %>
+  <%= render "comments/modal_form", post: @post, comment: @post.comments.build %>
+<% end %>
+
+<%# Update comments count %>
 <%= turbo_stream.update "comments_count_#{@post.id}", @post.reload.comments_count %>

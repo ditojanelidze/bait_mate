@@ -19,13 +19,16 @@ class Notification < ApplicationRecord
   private
 
   def broadcast_to_user
+    # Ensure actor with avatar is loaded for the partial
+    notification_with_actor = Notification.includes(actor: { avatar_attachment: :blob }).find(id)
+
     broadcast_remove_to "notifications_#{user_id}",
       target: "notifications_empty"
 
     broadcast_prepend_to "notifications_#{user_id}",
       target: "notifications_list",
       partial: "notifications/notification",
-      locals: { notification: self }
+      locals: { notification: notification_with_actor }
 
     broadcast_replace_to "notifications_#{user_id}",
       target: "notification_badge",

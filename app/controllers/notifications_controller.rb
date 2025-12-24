@@ -3,7 +3,7 @@ class NotificationsController < ApplicationController
   before_action :set_notification, only: [ :mark_read ]
 
   def index
-    @notifications = current_user.notifications.recent.includes(:actor)
+    @notifications = current_user.notifications.recent.includes(actor: { avatar_attachment: :blob })
 
     render partial: "notifications/list", locals: { notifications: @notifications }
   end
@@ -21,7 +21,7 @@ class NotificationsController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.replace("notification_badge", partial: "notifications/badge", locals: { count: 0 }),
-          turbo_stream.replace("notifications_list", partial: "notifications/list", locals: { notifications: current_user.notifications.recent.includes(:actor) })
+          turbo_stream.replace("notifications_list", partial: "notifications/list", locals: { notifications: current_user.notifications.recent.includes(actor: { avatar_attachment: :blob }) })
         ]
       end
       format.html { redirect_back fallback_location: root_path }

@@ -8,24 +8,24 @@
   <div class="flex-1 overflow-y-auto p-4"
        id="modal_comments_container_<%= post.id %>"
        data-infinite-scroll-target="scrollContainer">
-    <% if comments.any? %>
-      <div class="space-y-4" data-infinite-scroll-target="list">
-        <% comments.each do |comment| %>
-          <%= render "comments/comment", comment: comment %>
-        <% end %>
-      </div>
+    <div id="modal_comments_list_<%= post.id %>" class="space-y-4" data-infinite-scroll-target="list">
+      <% comments.each do |comment| %>
+        <%= render "comments/comment", comment: comment %>
+      <% end %>
+    </div>
 
-      <!-- Sentinel for infinite scroll -->
-      <div data-infinite-scroll-target="sentinel" class="py-4">
-        <% if remaining > 0 %>
-          <div class="flex justify-center">
-            <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
-          </div>
-        <% end %>
-      </div>
-    <% else %>
-      <p class="text-gray-500 text-center py-8"><%= t("comments.no_comments") %></p>
+    <% if comments.empty? %>
+      <p id="modal_no_comments_<%= post.id %>" class="text-gray-500 text-center py-8"><%= t("comments.no_comments") %></p>
     <% end %>
+
+    <!-- Sentinel for infinite scroll -->
+    <div data-infinite-scroll-target="sentinel" class="py-4">
+      <% if remaining > 0 %>
+        <div class="flex justify-center">
+          <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+        </div>
+      <% end %>
+    </div>
   </div>
 
   <!-- Comment Form -->

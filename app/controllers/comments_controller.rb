@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
   def index
     @offset = params[:offset].to_i
-    @comments = @post.comments.includes(:user).offset(@offset).limit(10)
+    @comments = @post.comments.includes(user: { avatar_attachment: :blob }).offset(@offset).limit(10)
     @remaining = @post.comments_count - @offset - @comments.size
 
     respond_to do |format|
@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
   end
 
   def modal
-    @comments = @post.comments.includes(:user).limit(10)
+    @comments = @post.comments.includes(user: { avatar_attachment: :blob }).limit(10)
     @remaining = @post.comments_count - @comments.size
 
     render partial: "comments/modal_content", locals: { post: @post, comments: @comments, remaining: @remaining }
@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
 
   def more
     offset = params[:offset].to_i
-    @comments = @post.comments.includes(:user).offset(offset).limit(10)
+    @comments = @post.comments.includes(user: { avatar_attachment: :blob }).offset(offset).limit(10)
     new_offset = offset + @comments.size
     remaining = @post.comments_count - new_offset
 
