@@ -4,10 +4,14 @@
   </div>
   <div class="ml-3 flex-1 min-w-0">
     <p class="text-sm text-gray-800">
+      <span class="font-medium"><%= notification.actor.full_name %></span>
       <% case notification.notification_type %>
       <% when "follow" %>
-        <span class="font-medium"><%= notification.actor.full_name %></span>
         <%= t("notifications.follow_message") %>
+      <% when "like" %>
+        <%= t("notifications.like_message") %>
+      <% when "comment" %>
+        <%= t("notifications.comment_message") %>
       <% end %>
     </p>
     <p class="text-xs text-gray-500 mt-1">

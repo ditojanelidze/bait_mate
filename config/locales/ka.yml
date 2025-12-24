@@ -130,6 +130,8 @@ ka:
     empty: "შეტყობინებები არ არის"
     mark_all_read: "ყველას წაკითხულად მონიშვნა"
     follow_message: "დაგიწყო გამოწერა"
+    like_message: "მოიწონა თქვენი პოსტი"
+    comment_message: "დააკომენტარა თქვენი პოსტი"
     ago: "წინ"
 
   # ActiveRecord errors

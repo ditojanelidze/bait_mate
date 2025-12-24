@@ -38,6 +38,8 @@ class NotificationsController < ApplicationController
     case notification.notification_type
     when "follow"
       user_path(notification.actor)
+    when "like", "comment"
+      post_path(notification.notifiable.post)
     else
       root_path
     end
