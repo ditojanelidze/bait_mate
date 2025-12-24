@@ -32,7 +32,6 @@ class SessionsController < ApplicationController
       session.delete(:login_phone)
       session[:user_id] = user.id
 
-      flash[:notice] = I18n.t("auth.login_success")
       redirect_to root_path
     else
       flash[:alert] = I18n.t("auth.invalid_code")
@@ -54,7 +53,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    flash[:notice] = I18n.t("auth.logout_success")
+
     redirect_to new_session_path
   end
 

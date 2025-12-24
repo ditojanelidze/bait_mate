@@ -23,11 +23,4 @@ class ApplicationController < ActionController::Base
       redirect_to new_session_path
     end
   end
-
-  def require_profile_complete
-    if logged_in? && !current_user.profile_complete?
-      flash[:alert] = I18n.t("auth.profile_incomplete")
-      redirect_to edit_profile_path
-    end
-  end
 end

@@ -19,7 +19,7 @@ class User < ApplicationRecord
             format: { with: /\A\+?[0-9]{9,15}\z/, message: :invalid_phone_format }
 
   def generate_verification_code!
-    self.verification_code = rand(100000..999999).to_s
+    self.verification_code = Rails.env.production? ? rand(100000..999999).to_s : "111111"
     self.verification_code_sent_at = Time.current
     save!
   end
@@ -37,10 +37,6 @@ class User < ApplicationRecord
 
   def full_name
     "#{first_name} #{last_name}"
-  end
-
-  def profile_complete?
-    avatar.attached?
   end
 
   def follow(other_user)
