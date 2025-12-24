@@ -103,7 +103,7 @@ ka:
     unauthorized: "თქვენ არ გაქვთ ამ მოქმედების უფლება"
     show_more: "მეტის ნახვა (%{count})"
     no_comments: "კომენტარები ჯერ არ არის"
-    login_to_comment: "კომენტარის დასატოვებლად შედით სისტემაში"
+    login_to_comment: "კომენტარის დასატოვებლად გაიარეთ ავტორიზაცია"
 
   # Likes
   likes:
@@ -115,14 +115,14 @@ ka:
   # Users / Profiles
   users:
     posts: "პოსტი"
-    followers: "მიმდევარი"
-    following: "მიმდევს"
+    followers: "გამომწერი"
+    following: "გამოწერილი"
     follow: "გამოწერა"
     unfollow: "გამოწერის გაუქმება"
     no_posts: "პოსტები ჯერ არ არის"
-    no_followers: "მიმდევრები ჯერ არ არის"
+    no_followers: "გამომწერები ჯერ არ არის"
     no_following: "არავის მიჰყვება"
-    following_status: "მიჰყვები"
+    following_status: "გამოწერილი"
 
   # Notifications
   notifications:
