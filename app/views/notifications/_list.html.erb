@@ -1,0 +1,12 @@
+<% notifications ||= [] %>
+<div id="notifications_list">
+  <% notifications.each do |notification| %>
+    <%= render "notifications/notification", notification: notification %>
+  <% end %>
+</div>
+<% if notifications.empty? %>
+  <div id="notifications_empty" class="p-8 text-center">
+    <%= inline_svg_tag "svg/bell.svg", class: "w-12 h-12 text-gray-300 mx-auto mb-3" %>
+    <p class="text-gray-500 text-sm"><%= t("notifications.empty") %></p>
+  </div>
+<% end %>

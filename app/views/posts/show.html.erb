@@ -2,9 +2,13 @@
   <article class="bg-white rounded-2xl shadow-lg overflow-hidden" data-controller="open-modal">
     <!-- Post Header -->
     <div class="flex items-center p-4">
-      <%= render "components/avatar", user: @post.user, size: :md %>
+      <%= link_to user_path(@post.user) do %>
+        <%= render "components/avatar", user: @post.user, size: :md %>
+      <% end %>
       <div class="ml-3">
-        <p class="font-medium text-gray-800"><%= @post.user.full_name %></p>
+        <%= link_to user_path(@post.user), class: "font-medium text-gray-800 hover:underline" do %>
+          <%= @post.user.full_name %>
+        <% end %>
         <p class="text-xs text-gray-500"><%= l @post.created_at, format: :long %></p>
       </div>
       <% if logged_in? && @post.user_id == current_user.id %>

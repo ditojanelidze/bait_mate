@@ -112,6 +112,26 @@ ka:
     liked_by: "მოიწონეს"
     no_likes: "ჯერ არავის მოუწონებია"
 
+  # Users / Profiles
+  users:
+    posts: "პოსტი"
+    followers: "მიმდევარი"
+    following: "მიმდევს"
+    follow: "გამოწერა"
+    unfollow: "გამოწერის გაუქმება"
+    no_posts: "პოსტები ჯერ არ არის"
+    no_followers: "მიმდევრები ჯერ არ არის"
+    no_following: "არავის მიჰყვება"
+    following_status: "მიჰყვები"
+
+  # Notifications
+  notifications:
+    title: "შეტყობინებები"
+    empty: "შეტყობინებები არ არის"
+    mark_all_read: "ყველას წაკითხულად მონიშვნა"
+    follow_message: "დაგიწყო გამოწერა"
+    ago: "წინ"
+
   # ActiveRecord errors
   errors:
     messages:
@@ -154,6 +174,47 @@ ka:
           attributes:
             body:
               blank: "კომენტარი არ შეიძლება იყოს ცარიელი"
+
+  # DateTime distance in words (for time_ago_in_words helper)
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: "დაახლოებით 1 საათი"
+        other: "დაახლოებით %{count} საათი"
+      about_x_months:
+        one: "დაახლოებით 1 თვე"
+        other: "დაახლოებით %{count} თვე"
+      about_x_years:
+        one: "დაახლოებით 1 წელი"
+        other: "დაახლოებით %{count} წელი"
+      almost_x_years:
+        one: "თითქმის 1 წელი"
+        other: "თითქმის %{count} წელი"
+      half_a_minute: "ნახევარი წუთი"
+      less_than_x_minutes:
+        one: "1 წუთზე ნაკლები"
+        other: "%{count} წუთზე ნაკლები"
+      less_than_x_seconds:
+        one: "1 წამზე ნაკლები"
+        other: "%{count} წამზე ნაკლები"
+      over_x_years:
+        one: "1 წელზე მეტი"
+        other: "%{count} წელზე მეტი"
+      x_days:
+        one: "1 დღე"
+        other: "%{count} დღე"
+      x_minutes:
+        one: "1 წუთი"
+        other: "%{count} წუთი"
+      x_months:
+        one: "1 თვე"
+        other: "%{count} თვე"
+      x_seconds:
+        one: "1 წამი"
+        other: "%{count} წამი"
+      x_years:
+        one: "1 წელი"
+        other: "%{count} წელი"
 
   # Date/Time formats
   time:

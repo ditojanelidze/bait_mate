@@ -1,14 +1,14 @@
 <%# locals: (id:, title: nil, padding: true) %>
 <div id="<%= id %>"
-     class="fixed inset-0 z-50 hidden"
+     class="fixed inset-0 z-[60] hidden"
      data-controller="modal"
      data-modal-id-value="<%= id %>"
      data-action="keydown.esc->modal#close">
   <!-- Backdrop -->
   <div class="absolute inset-0 bg-black/50" data-action="click->modal#close"></div>
 
-  <!-- Modal Content -->
-  <div class="absolute bottom-0 left-0 right-0 bg-white rounded-t-3xl shadow-xl h-[70vh] flex flex-col transform transition-transform duration-300 translate-y-full"
+  <!-- Modal Content (bottom-16 on mobile to account for bottom nav, bottom-0 on desktop) -->
+  <div class="absolute bottom-16 md:bottom-0 left-0 right-0 bg-white rounded-t-3xl shadow-xl h-[70vh] flex flex-col transform transition-transform duration-300 translate-y-full"
        data-modal-target="content">
     <!-- Header -->
     <div class="flex items-center justify-between p-4 border-b border-gray-200 shrink-0">

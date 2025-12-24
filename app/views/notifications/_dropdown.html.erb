@@ -1,0 +1,33 @@
+<% notifications ||= [] %>
+<% unread_count ||= 0 %>
+<div class="relative" data-controller="notification-dropdown">
+  <!-- Bell Button -->
+  <button type="button"
+      class="p-1 hover:bg-gray-100 rounded-full transition-colors"
+      data-action="click->notification-dropdown#toggle">
+    <%= render "notifications/badge", count: unread_count %>
+  </button>
+
+  <!-- Dropdown -->
+  <div class="hidden absolute right-0 top-full mt-2 w-80 bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden z-50"
+       data-notification-dropdown-target="menu">
+    <!-- Header -->
+    <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200 bg-gray-50">
+      <h3 class="font-semibold text-gray-800"><%= t("notifications.title") %></h3>
+      <% if unread_count > 0 %>
+        <%= button_to mark_all_read_notifications_path,
+            method: :post,
+            class: "text-sm text-blue-600 hover:underline",
+            data: { turbo_frame: "_top" } do %>
+          <%= t("notifications.mark_all_read") %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <!-- Notifications List -->
+    <div class="max-h-96 overflow-y-auto">
+      <%= turbo_stream_from "notifications_#{current_user.id}" %>
+      <%= render "notifications/list", notifications: notifications %>
+    </div>
+  </div>
+</div>

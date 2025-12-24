@@ -1,0 +1,20 @@
+<%= link_to mark_read_notification_path(notification), method: :post, data: { turbo_method: :post }, class: "flex items-start p-3 #{notification.read? ? 'bg-white' : 'bg-blue-50'} hover:bg-gray-50 border-b border-gray-100 last:border-0" do %>
+  <div class="flex-shrink-0">
+    <%= render "components/avatar", user: notification.actor, size: :sm %>
+  </div>
+  <div class="ml-3 flex-1 min-w-0">
+    <p class="text-sm text-gray-800">
+      <% case notification.notification_type %>
+      <% when "follow" %>
+        <span class="font-medium"><%= notification.actor.full_name %></span>
+        <%= t("notifications.follow_message") %>
+      <% end %>
+    </p>
+    <p class="text-xs text-gray-500 mt-1">
+      <%= time_ago_in_words(notification.created_at) %> <%= t("notifications.ago") %>
+    </p>
+  </div>
+  <% unless notification.read? %>
+    <div class="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0 mt-2"></div>
+  <% end %>
+<% end %>

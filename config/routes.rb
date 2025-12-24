@@ -17,10 +17,29 @@ Rails.application.routes.draw do
   post "login/resend", to: "sessions#resend_code", as: :resend_session_code
   delete "logout", to: "sessions#destroy", as: :logout
 
-  # Profile
+  # Profile (own profile)
   get "profile", to: "profiles#show", as: :profile
   get "profile/edit", to: "profiles#edit", as: :edit_profile
   patch "profile", to: "profiles#update", as: :update_profile
+
+  # Notifications
+  resources :notifications, only: [ :index ] do
+    member do
+      post :mark_read
+    end
+    collection do
+      post :mark_all_read
+    end
+  end
+
+  # Users (public profiles)
+  resources :users, only: [ :show ] do
+    resource :follow, only: [ :create, :destroy ]
+    member do
+      get :followers
+      get :following
+    end
+  end
 
   # Posts (News Feed)
   resources :posts do

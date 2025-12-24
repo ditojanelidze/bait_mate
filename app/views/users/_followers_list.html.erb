@@ -1,0 +1,22 @@
+<%# locals: (users:) %>
+<div class="p-4">
+  <% if users.any? %>
+    <div class="space-y-3">
+      <% users.each do |user| %>
+        <%= link_to user_path(user), class: "flex items-center hover:bg-gray-50 p-2 rounded-lg -mx-2" do %>
+          <%= render "components/avatar", user: user, size: :md %>
+          <div class="ml-3 flex-1">
+            <p class="font-medium text-gray-800"><%= user.full_name %></p>
+          </div>
+          <% if logged_in? && user != current_user %>
+            <% if current_user.following?(user) %>
+              <span class="text-sm text-gray-500"><%= t("users.following_status") %></span>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-gray-500 text-center py-8"><%= t("users.no_followers") %></p>
+  <% end %>
+</div>
