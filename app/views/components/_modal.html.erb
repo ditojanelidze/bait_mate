@@ -19,9 +19,7 @@
       <% end %>
       <button type="button" data-action="click->modal#close"
               class="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
+        <%= inline_svg_tag "svg/close.svg", class: "w-5 h-5" %>
       </button>
     </div>
 
