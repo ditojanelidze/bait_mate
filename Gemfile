@@ -16,6 +16,7 @@ gem "bootsnap", require: false
 gem "kamal", require: false
 gem "thruster", require: false
 gem "image_processing", "~> 1.2"
+gem "inline_svg"
 
 group :development, :test do
   gem "bundler-audit", require: false
