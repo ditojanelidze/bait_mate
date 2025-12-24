@@ -2,7 +2,7 @@
   <% if @posts.any? %>
     <div class="space-y-6">
       <% @posts.each do |post| %>
-        <%= render "components/post_card", post: post %>
+        <%= render "posts/post_card", post: post %>
       <% end %>
     </div>
   <% else %>

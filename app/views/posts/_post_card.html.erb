@@ -17,6 +17,10 @@
           <%= inline_svg_tag "svg/edit.svg", class: "w-5 h-5" %>
         <% end %>
       </div>
+    <% elsif !current_user.following?(post.user) %>
+      <div class="ml-auto">
+        <%= render "posts/follow_button", user: post.user %>
+      </div>
     <% end %>
   </div>
 
