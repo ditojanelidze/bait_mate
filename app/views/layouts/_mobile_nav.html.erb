@@ -1,0 +1,20 @@
+<nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 md:hidden z-50">
+  <div class="flex justify-around items-center h-16">
+    <%= link_to root_path, class: "flex flex-col items-center text-gray-600 hover:text-blue-600" do %>
+      <%= inline_svg_tag "svg/home.svg", class: "w-6 h-6" %>
+      <span class="text-xs"><%= t("nav.home") %></span>
+    <% end %>
+    <%= link_to new_post_path, class: "flex flex-col items-center text-gray-600 hover:text-blue-600" do %>
+      <%= inline_svg_tag "svg/plus.svg", class: "w-6 h-6" %>
+      <span class="text-xs"><%= t("nav.new_post") %></span>
+    <% end %>
+    <%= link_to profile_path, class: "flex flex-col items-center text-gray-600 hover:text-blue-600" do %>
+      <%= inline_svg_tag "svg/user.svg", class: "w-6 h-6" %>
+      <span class="text-xs"><%= t("nav.profile") %></span>
+    <% end %>
+    <%= button_to logout_path, method: :delete, class: "flex flex-col items-center text-gray-600 hover:text-blue-600", form: { class: "inline" } do %>
+      <%= inline_svg_tag "svg/logout.svg", class: "w-6 h-6" %>
+      <span class="text-xs"><%= t("nav.logout") %></span>
+    <% end %>
+  </div>
+</nav>

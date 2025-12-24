@@ -24,49 +24,10 @@
 
   <body class="bg-white min-h-screen" data-controller="header-scroll">
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white transition-transform duration-300 ease-in-out"
-         data-header-scroll-target="header">
-      <div class="max-w-7xl mx-auto">
-        <div class="flex justify-between items-center h-16">
-          <!-- Left spacer for centering -->
-          <div class="flex items-center space-x-4 w-1/3">
-            <% if logged_in? %>
-              <%= link_to t("nav.new_post"), new_post_path, class: "text-sm hover:text-blue-200 hidden md:inline" %>
-            <% end %>
-          </div>
-
-          <!-- Centered Logo -->
-          <div class="flex justify-center w-1/3">
-            <%= link_to root_path, class: "text-2xl" do %>
-              <span style="font-family: 'American Typewriter', Condensed;">Baitmate</span>
-            <% end %>
-          </div>
-
-          <!-- Navigation Links -->
-          <div class="flex items-center justify-end space-x-4 w-1/3">
-            <% if logged_in? %>
-              <%= inline_svg_tag "svg/bell.svg", class: "w-6 h-6" %>
-            <% else %>
-              <%= link_to t("nav.login"), new_session_path, class: "text-sm hover:text-blue-200" %>
-              <%= link_to t("nav.register"), new_registration_path,
-                  class: "bg-white text-blue-600 px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-50" %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <%= render "layouts/header_nav" %>
 
     <!-- Flash Messages -->
-    <% if flash[:notice] %>
-      <div class="fixed top-20 left-4 right-4 z-40 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg shadow-lg">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
-    <% if flash[:alert] %>
-      <div class="fixed top-20 left-4 right-4 z-40 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg shadow-lg">
-        <%= flash[:alert] %>
-      </div>
-    <% end %>
+    <%= render "layouts/flash" %>
 
     <!-- Main Content -->
     <main class="pt-20 pb-24 md:pb-8 max-w-7xl mx-auto">
@@ -75,26 +36,7 @@
 
     <!-- Mobile Bottom Navigation -->
     <% if logged_in? %>
-      <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 md:hidden z-50">
-        <div class="flex justify-around items-center h-16">
-          <%= link_to root_path, class: "flex flex-col items-center text-gray-600 hover:text-blue-600" do %>
-            <%= inline_svg_tag "svg/home.svg", class: "w-6 h-6" %>
-            <span class="text-xs"><%= t("nav.home") %></span>
-          <% end %>
-          <%= link_to new_post_path, class: "flex flex-col items-center text-gray-600 hover:text-blue-600" do %>
-            <%= inline_svg_tag "svg/plus.svg", class: "w-6 h-6" %>
-            <span class="text-xs"><%= t("nav.new_post") %></span>
-          <% end %>
-          <%= link_to profile_path, class: "flex flex-col items-center text-gray-600 hover:text-blue-600" do %>
-            <%= inline_svg_tag "svg/user.svg", class: "w-6 h-6" %>
-            <span class="text-xs"><%= t("nav.profile") %></span>
-          <% end %>
-          <%= button_to logout_path, method: :delete, class: "flex flex-col items-center text-gray-600 hover:text-blue-600", form: { class: "inline" } do %>
-            <%= inline_svg_tag "svg/logout.svg", class: "w-6 h-6" %>
-            <span class="text-xs"><%= t("nav.logout") %></span>
-          <% end %>
-        </div>
-      </nav>
+      <%= render "layouts/mobile_nav" %>
     <% end %>
   </body>
 </html>

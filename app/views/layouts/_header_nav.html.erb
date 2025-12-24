@@ -1,0 +1,33 @@
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white transition-transform duration-300 ease-in-out"
+     data-header-scroll-target="header">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex justify-between items-center h-12">
+      <!-- Left spacer for centering -->
+      <div class="flex items-center space-x-4 w-1/3">
+        <% if logged_in? %>
+          <%= link_to new_post_path, class: "pl-3 text-gray-600 hover:text-blue-600" do %>
+            <%= inline_svg_tag "svg/plus.svg", class: "w-6 h-6" %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <!-- Centered Logo -->
+      <div class="flex justify-center w-1/3">
+        <%= link_to root_path, class: "text-2xl" do %>
+          <span style="font-family: 'American Typewriter', Condensed;">Baitmate</span>
+        <% end %>
+      </div>
+
+      <!-- Navigation Links -->
+      <div class="flex items-center justify-end space-x-4 w-1/3 pr-3">
+        <% if logged_in? %>
+          <%= inline_svg_tag "svg/bell.svg", class: "w-6 h-6" %>
+        <% else %>
+          <%= link_to t("nav.login"), new_session_path, class: "text-sm hover:text-blue-200" %>
+          <%= link_to t("nav.register"), new_registration_path,
+                      class: "bg-white text-blue-600 px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-50" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>
