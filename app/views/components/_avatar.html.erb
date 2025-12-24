@@ -1,0 +1,24 @@
+<%# locals: (user:, size: :md, show_name: false) %>
+<%
+  sizes = {
+    sm: { container: "w-8 h-8", text: "text-xs" },
+    md: { container: "w-10 h-10", text: "text-sm" },
+    lg: { container: "w-28 h-28", text: "text-4xl" }
+  }
+  size_classes = sizes[size] || sizes[:md]
+%>
+<div class="flex items-center">
+  <% if user.avatar.attached? %>
+    <%= image_tag user.avatar.variant(resize_to_fill: size == :lg ? [120, 120] : [40, 40]),
+        class: "#{size_classes[:container]} rounded-full object-cover" %>
+  <% else %>
+    <div class="<%= size_classes[:container] %> rounded-full bg-blue-500 flex items-center justify-center">
+      <span class="text-white font-medium <%= size_classes[:text] %>"><%= user.first_name[0] %></span>
+    </div>
+  <% end %>
+  <% if show_name %>
+    <div class="ml-3">
+      <p class="font-medium text-gray-800"><%= user.full_name %></p>
+    </div>
+  <% end %>
+</div>

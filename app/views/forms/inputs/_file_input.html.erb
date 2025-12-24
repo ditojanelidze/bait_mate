@@ -1,0 +1,16 @@
+<%# locals: (form:, field:, label:, hint: nil, accept: "image/*", preview_target: nil, action: nil) %>
+<div>
+  <%= form.label field, label, class: "block text-sm font-medium text-gray-700 mb-1" %>
+  <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-500 transition-colors">
+    <%= form.label field, class: "cursor-pointer inline-block" do %>
+      <span class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition-colors inline-block">
+        <%= label %>
+      </span>
+      <%= form.file_field field, accept: accept, class: "hidden",
+          data: preview_target ? { image_preview_target: preview_target, action: action } : {} %>
+    <% end %>
+    <% if hint %>
+      <p class="text-gray-500 text-xs mt-2"><%= hint %></p>
+    <% end %>
+  </div>
+</div>

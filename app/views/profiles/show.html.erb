@@ -2,15 +2,8 @@
   <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
     <!-- Profile Header -->
     <div class="bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-8 text-center">
-      <div class="mb-4">
-        <% if current_user.avatar.attached? %>
-          <%= image_tag current_user.avatar.variant(resize_to_fill: [120, 120]),
-              class: "w-28 h-28 rounded-full object-cover border-4 border-white mx-auto shadow-lg" %>
-        <% else %>
-          <div class="w-28 h-28 rounded-full bg-blue-400 flex items-center justify-center mx-auto border-4 border-white shadow-lg">
-            <span class="text-4xl font-bold text-white"><%= current_user.first_name[0] %></span>
-          </div>
-        <% end %>
+      <div class="mb-4 flex justify-center">
+        <%= render "components/avatar", user: current_user, size: :lg %>
       </div>
       <h1 class="text-2xl font-bold text-white"><%= current_user.full_name %></h1>
       <p class="text-blue-100"><%= current_user.phone_number %></p>
@@ -18,9 +11,7 @@
 
     <!-- Profile Actions -->
     <div class="p-6">
-      <%= link_to edit_profile_path, class: "block w-full bg-blue-600 text-white text-center py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors" do %>
-        <%= t("profile.edit_title") %>
-      <% end %>
+      <%= render "forms/buttons/link", url: edit_profile_path, label: t("profile.edit_title") %>
     </div>
   </div>
 </div>

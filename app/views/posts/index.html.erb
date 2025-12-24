@@ -4,67 +4,7 @@
   <% if @posts.any? %>
     <div class="space-y-6">
       <% @posts.each do |post| %>
-        <article class="bg-white rounded-2xl shadow-lg overflow-hidden">
-          <!-- Post Header -->
-          <div class="flex items-center p-4">
-            <% if post.user.avatar.attached? %>
-              <%= image_tag post.user.avatar.variant(resize_to_fill: [40, 40]),
-                  class: "w-10 h-10 rounded-full object-cover" %>
-            <% else %>
-              <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center">
-                <span class="text-white font-medium"><%= post.user.first_name[0] %></span>
-              </div>
-            <% end %>
-            <div class="ml-3">
-              <p class="font-medium text-gray-800"><%= post.user.full_name %></p>
-              <p class="text-xs text-gray-500"><%= l post.created_at, format: :short %></p>
-            </div>
-            <% if logged_in? && post.user_id == current_user.id %>
-              <div class="ml-auto">
-                <%= link_to edit_post_path(post), class: "text-gray-400 hover:text-blue-600" do %>
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                  </svg>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-
-          <!-- Post Image -->
-          <% if post.image.attached? %>
-            <%= link_to post do %>
-              <%= image_tag post.image.variant(resize_to_limit: [800, 800]),
-                  class: "w-full aspect-square object-cover" %>
-            <% end %>
-          <% end %>
-
-          <!-- Post Content -->
-          <div class="p-4">
-            <p class="text-gray-800 mb-3"><%= post.description %></p>
-
-            <div class="grid grid-cols-2 gap-2 text-sm mb-4">
-              <div class="bg-blue-50 rounded-lg p-2">
-                <span class="text-blue-600 font-medium"><%= t("posts.specie") %>:</span>
-                <span class="text-gray-700"><%= post.specie %></span>
-              </div>
-              <div class="bg-green-50 rounded-lg p-2">
-                <span class="text-green-600 font-medium"><%= t("posts.location") %>:</span>
-                <span class="text-gray-700"><%= post.location %></span>
-              </div>
-              <div class="bg-purple-50 rounded-lg p-2">
-                <span class="text-purple-600 font-medium"><%= t("posts.rod") %>:</span>
-                <span class="text-gray-700"><%= post.rod %></span>
-              </div>
-              <div class="bg-orange-50 rounded-lg p-2">
-                <span class="text-orange-600 font-medium"><%= t("posts.bait") %>:</span>
-                <span class="text-gray-700"><%= post.bait %></span>
-              </div>
-            </div>
-
-            <!-- Like Button and Comments Link -->
-            <%= render "likes/like_button", post: post %>
-          </div>
-        </article>
+        <%= render "components/post_card", post: post %>
       <% end %>
     </div>
   <% else %>
@@ -76,3 +16,17 @@
     </div>
   <% end %>
 </div>
+
+<!-- Comments Modal -->
+<%= render "components/modal", id: "comments-modal", title: t("comments.title"), padding: false do %>
+  <div id="comments-modal-content" class="h-full flex flex-col overflow-hidden">
+    <!-- Content loaded via JavaScript -->
+  </div>
+<% end %>
+
+<!-- Likes Modal -->
+<%= render "components/modal", id: "likes-modal", title: t("likes.liked_by") do %>
+  <div id="likes-modal-content" class="overflow-y-auto">
+    <!-- Content loaded via JavaScript -->
+  </div>
+<% end %>

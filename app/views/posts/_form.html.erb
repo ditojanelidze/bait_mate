@@ -28,46 +28,10 @@
     </div>
   </div>
 
-  <!-- Description -->
-  <div>
-    <%= f.label :description, t("posts.description"), class: "block text-sm font-medium text-gray-700 mb-1" %>
-    <%= f.text_area :description, rows: 3,
-        class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent",
-        placeholder: t("posts.description_placeholder") %>
-  </div>
-
-  <!-- Specie -->
-  <div>
-    <%= f.label :specie, t("posts.specie"), class: "block text-sm font-medium text-gray-700 mb-1" %>
-    <%= f.text_field :specie,
-        class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent",
-        placeholder: t("posts.specie_placeholder") %>
-  </div>
-
-  <!-- Location -->
-  <div>
-    <%= f.label :location, t("posts.location"), class: "block text-sm font-medium text-gray-700 mb-1" %>
-    <%= f.text_field :location,
-        class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent",
-        placeholder: t("posts.location_placeholder") %>
-  </div>
-
-  <!-- Rod -->
-  <div>
-    <%= f.label :rod, t("posts.rod"), class: "block text-sm font-medium text-gray-700 mb-1" %>
-    <%= f.text_field :rod,
-        class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent",
-        placeholder: t("posts.rod_placeholder") %>
-  </div>
-
-  <!-- Bait -->
-  <div>
-    <%= f.label :bait, t("posts.bait"), class: "block text-sm font-medium text-gray-700 mb-1" %>
-    <%= f.text_field :bait,
-        class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent",
-        placeholder: t("posts.bait_placeholder") %>
-  </div>
-
-  <%= f.submit post.persisted? ? t("posts.update") : t("posts.submit"),
-      class: "w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors cursor-pointer" %>
+  <%= render "forms/inputs/textarea", form: f, field: :description, label: t("posts.description"), placeholder: t("posts.description_placeholder") %>
+  <%= render "forms/inputs/text_input", form: f, field: :specie, label: t("posts.specie"), placeholder: t("posts.specie_placeholder") %>
+  <%= render "forms/inputs/text_input", form: f, field: :location, label: t("posts.location"), placeholder: t("posts.location_placeholder") %>
+  <%= render "forms/inputs/text_input", form: f, field: :rod, label: t("posts.rod"), placeholder: t("posts.rod_placeholder") %>
+  <%= render "forms/inputs/text_input", form: f, field: :bait, label: t("posts.bait"), placeholder: t("posts.bait_placeholder") %>
+  <%= render "forms/buttons/primary", form: f, label: post.persisted? ? t("posts.update") : t("posts.submit") %>
 <% end %>

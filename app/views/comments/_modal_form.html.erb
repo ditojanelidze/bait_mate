@@ -1,0 +1,16 @@
+<%# locals: (post:, comment:) %>
+<%= form_with model: [post, comment],
+    id: "modal_comment_form_#{post.id}",
+    class: "flex items-end space-x-2",
+    data: { controller: "modal-comment-form", modal_comment_form_post_id_value: post.id } do |f| %>
+  <div class="flex-1">
+    <%= f.text_area :body,
+        class: "w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none text-sm",
+        rows: 1,
+        placeholder: t("comments.placeholder"),
+        data: { modal_comment_form_target: "input" } %>
+  </div>
+  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
+    <%= t("comments.submit") %>
+  </button>
+<% end %>

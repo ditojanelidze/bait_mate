@@ -1,6 +1,12 @@
 class LikesController < ApplicationController
-  before_action :require_login
+  before_action :require_login, except: [ :likers ]
   before_action :set_post
+
+  def likers
+    @likers = @post.likes.includes(:user).map(&:user)
+
+    render partial: "likes/likers_list", locals: { likers: @likers }
+  end
 
   def create
     @like = @post.likes.find_or_initialize_by(user: current_user)

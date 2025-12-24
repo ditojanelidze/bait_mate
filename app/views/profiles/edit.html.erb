@@ -1,5 +1,5 @@
 <div class="max-w-lg mx-auto">
-  <div class="bg-white rounded-2xl shadow-xl p-8">
+  <%= render "components/card" do %>
     <h1 class="text-2xl font-bold text-center text-gray-800 mb-8">
       <%= t("profile.edit_title") %>
     </h1>
@@ -9,13 +9,13 @@
     <%= form_with model: current_user, url: update_profile_path, method: :patch, class: "space-y-6" do |f| %>
       <!-- Avatar Upload -->
       <div class="text-center" data-controller="avatar-preview">
-        <div class="mb-4">
+        <div class="mb-4 flex justify-center">
           <% if current_user.avatar.attached? %>
             <%= image_tag current_user.avatar.variant(resize_to_fill: [120, 120]),
-                class: "w-28 h-28 rounded-full object-cover border-4 border-gray-200 mx-auto",
+                class: "w-28 h-28 rounded-full object-cover border-4 border-gray-200",
                 data: { avatar_preview_target: "preview" } %>
           <% else %>
-            <div class="w-28 h-28 rounded-full bg-gray-200 flex items-center justify-center mx-auto border-4 border-gray-200"
+            <div class="w-28 h-28 rounded-full bg-gray-200 flex items-center justify-center border-4 border-gray-200"
                  data-avatar-preview-target="placeholder">
               <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
@@ -34,22 +34,9 @@
         <p class="text-gray-500 text-xs mt-2"><%= t("profile.avatar_hint") %></p>
       </div>
 
-      <div>
-        <%= f.label :first_name, t("profile.first_name"),
-            class: "block text-sm font-medium text-gray-700 mb-1" %>
-        <%= f.text_field :first_name,
-            class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" %>
-      </div>
-
-      <div>
-        <%= f.label :last_name, t("profile.last_name"),
-            class: "block text-sm font-medium text-gray-700 mb-1" %>
-        <%= f.text_field :last_name,
-            class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" %>
-      </div>
-
-      <%= f.submit t("profile.submit"),
-          class: "w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors cursor-pointer" %>
+      <%= render "forms/inputs/text_input", form: f, field: :first_name, label: t("profile.first_name") %>
+      <%= render "forms/inputs/text_input", form: f, field: :last_name, label: t("profile.last_name") %>
+      <%= render "forms/buttons/primary", form: f, label: t("profile.submit") %>
     <% end %>
-  </div>
+  <% end %>
 </div>

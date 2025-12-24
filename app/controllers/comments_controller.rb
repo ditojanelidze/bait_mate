@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :require_login, except: [:index]
+  before_action :require_login, except: [ :index, :modal, :more ]
   before_action :set_post
 
   def index
@@ -11,6 +11,28 @@ class CommentsController < ApplicationController
       format.turbo_stream
       format.html { redirect_to @post }
     end
+  end
+
+  def modal
+    @comments = @post.comments.includes(:user).limit(10)
+    @remaining = @post.comments_count - @comments.size
+
+    render partial: "comments/modal_content", locals: { post: @post, comments: @comments, remaining: @remaining }
+  end
+
+  def more
+    offset = params[:offset].to_i
+    @comments = @post.comments.includes(:user).offset(offset).limit(10)
+    new_offset = offset + @comments.size
+    remaining = @post.comments_count - new_offset
+
+    html = render_to_string(partial: "comments/comments_list", locals: { comments: @comments })
+
+    render json: {
+      html: html,
+      new_offset: new_offset,
+      has_more: remaining > 0
+    }
   end
 
   def create

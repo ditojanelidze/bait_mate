@@ -1,0 +1,33 @@
+<%# locals: (id:, title: nil, padding: true) %>
+<div id="<%= id %>"
+     class="fixed inset-0 z-50 hidden"
+     data-controller="modal"
+     data-modal-id-value="<%= id %>"
+     data-action="keydown.esc->modal#close">
+  <!-- Backdrop -->
+  <div class="absolute inset-0 bg-black/50" data-action="click->modal#close"></div>
+
+  <!-- Modal Content -->
+  <div class="absolute bottom-0 left-0 right-0 bg-white rounded-t-3xl shadow-xl h-[70vh] flex flex-col transform transition-transform duration-300 translate-y-full"
+       data-modal-target="content">
+    <!-- Header -->
+    <div class="flex items-center justify-between p-4 border-b border-gray-200 shrink-0">
+      <% if title %>
+        <h2 class="text-lg font-semibold text-gray-800"><%= title %></h2>
+      <% else %>
+        <div></div>
+      <% end %>
+      <button type="button" data-action="click->modal#close"
+              class="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Body -->
+    <div class="flex-1 min-h-0 <%= 'p-4' if padding %>" data-modal-target="body">
+      <%= yield %>
+    </div>
+  </div>
+</div>

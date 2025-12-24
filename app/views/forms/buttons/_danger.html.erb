@@ -1,0 +1,6 @@
+<%# locals: (url:, label:, method: :delete, confirm: nil, full_width: true) %>
+<%= button_to url, method: method,
+    data: confirm ? { turbo_confirm: confirm } : {},
+    class: "#{full_width ? 'w-full' : ''} bg-red-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-red-700 transition-colors" do %>
+  <%= label %>
+<% end %>

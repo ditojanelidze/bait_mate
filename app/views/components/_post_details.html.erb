@@ -1,0 +1,40 @@
+<%# locals: (post:, layout: :grid) %>
+<% if layout == :grid %>
+  <div class="grid grid-cols-2 gap-2 text-sm">
+    <div class="bg-blue-50 rounded-lg p-2">
+      <span class="text-blue-600 font-medium"><%= t("posts.specie") %>:</span>
+      <span class="text-gray-700"><%= post.specie %></span>
+    </div>
+    <div class="bg-green-50 rounded-lg p-2">
+      <span class="text-green-600 font-medium"><%= t("posts.location") %>:</span>
+      <span class="text-gray-700"><%= post.location %></span>
+    </div>
+    <div class="bg-purple-50 rounded-lg p-2">
+      <span class="text-purple-600 font-medium"><%= t("posts.rod") %>:</span>
+      <span class="text-gray-700"><%= post.rod %></span>
+    </div>
+    <div class="bg-orange-50 rounded-lg p-2">
+      <span class="text-orange-600 font-medium"><%= t("posts.bait") %>:</span>
+      <span class="text-gray-700"><%= post.bait %></span>
+    </div>
+  </div>
+<% else %>
+  <div class="space-y-2">
+    <div class="flex items-center bg-blue-50 rounded-lg p-3">
+      <span class="text-blue-600 font-medium w-32"><%= t("posts.specie") %>:</span>
+      <span class="text-gray-700"><%= post.specie %></span>
+    </div>
+    <div class="flex items-center bg-green-50 rounded-lg p-3">
+      <span class="text-green-600 font-medium w-32"><%= t("posts.location") %>:</span>
+      <span class="text-gray-700"><%= post.location %></span>
+    </div>
+    <div class="flex items-center bg-purple-50 rounded-lg p-3">
+      <span class="text-purple-600 font-medium w-32"><%= t("posts.rod") %>:</span>
+      <span class="text-gray-700"><%= post.rod %></span>
+    </div>
+    <div class="flex items-center bg-orange-50 rounded-lg p-3">
+      <span class="text-orange-600 font-medium w-32"><%= t("posts.bait") %>:</span>
+      <span class="text-gray-700"><%= post.bait %></span>
+    </div>
+  </div>
+<% end %>

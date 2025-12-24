@@ -1,0 +1,9 @@
+<%# locals: (form: nil, label:, full_width: true) %>
+<% if form %>
+  <%= form.submit label,
+      class: "#{full_width ? 'w-full' : ''} bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors cursor-pointer" %>
+<% else %>
+  <button type="submit" class="<%= full_width ? 'w-full' : '' %> bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors cursor-pointer">
+    <%= label %>
+  </button>
+<% end %>

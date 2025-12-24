@@ -24,8 +24,15 @@ Rails.application.routes.draw do
 
   # Posts (News Feed)
   resources :posts do
-    resources :comments, only: [:index, :create, :destroy]
-    resource :like, only: [:create, :destroy]
+    resources :comments, only: [:index, :create, :destroy] do
+      collection do
+        get :modal
+        get :more
+      end
+    end
+    resource :like, only: [:create, :destroy] do
+      get :likers, on: :collection
+    end
   end
 
   # Root path - News Feed

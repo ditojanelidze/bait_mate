@@ -1,45 +1,15 @@
-<div class="min-h-[calc(100vh-80px)] flex items-center justify-center">
-  <div class="w-full max-w-md">
-    <div class="bg-white rounded-2xl shadow-xl p-8">
-      <h1 class="text-2xl font-bold text-center text-gray-800 mb-8">
-        <%= t("registration.title") %>
-      </h1>
+<%= render "components/auth_layout", title: t("registration.title") do %>
+  <%= render "shared/form_errors", object: @user %>
 
-      <%= render "shared/form_errors", object: @user %>
+  <%= form_with model: @user, url: registration_path, class: "space-y-6" do |f| %>
+    <%= render "forms/inputs/text_input", form: f, field: :first_name, label: t("registration.first_name") %>
+    <%= render "forms/inputs/text_input", form: f, field: :last_name, label: t("registration.last_name") %>
+    <%= render "forms/inputs/phone_input", form: f, field: :phone_number, label: t("registration.phone_number"), placeholder: t("registration.phone_placeholder") %>
+    <%= render "forms/buttons/primary", form: f, label: t("registration.submit") %>
+  <% end %>
 
-      <%= form_with model: @user, url: registration_path, class: "space-y-6" do |f| %>
-        <div>
-          <%= f.label :first_name, t("registration.first_name"),
-              class: "block text-sm font-medium text-gray-700 mb-1" %>
-          <%= f.text_field :first_name,
-              class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent",
-              placeholder: t("registration.first_name") %>
-        </div>
-
-        <div>
-          <%= f.label :last_name, t("registration.last_name"),
-              class: "block text-sm font-medium text-gray-700 mb-1" %>
-          <%= f.text_field :last_name,
-              class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent",
-              placeholder: t("registration.last_name") %>
-        </div>
-
-        <div>
-          <%= f.label :phone_number, t("registration.phone_number"),
-              class: "block text-sm font-medium text-gray-700 mb-1" %>
-          <%= f.telephone_field :phone_number,
-              class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent",
-              placeholder: t("registration.phone_placeholder") %>
-        </div>
-
-        <%= f.submit t("registration.submit"),
-            class: "w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors cursor-pointer" %>
-      <% end %>
-
-      <p class="text-center text-gray-600 mt-6">
-        <%= t("registration.have_account") %>
-        <%= link_to t("registration.login_link"), new_session_path, class: "text-blue-600 font-medium hover:underline" %>
-      </p>
-    </div>
-  </div>
-</div>
+  <p class="text-center text-gray-600 mt-6">
+    <%= t("registration.have_account") %>
+    <%= link_to t("registration.login_link"), new_session_path, class: "text-blue-600 font-medium hover:underline" %>
+  </p>
+<% end %>

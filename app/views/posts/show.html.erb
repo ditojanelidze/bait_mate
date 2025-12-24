@@ -1,15 +1,8 @@
 <div class="max-w-2xl mx-auto">
-  <article class="bg-white rounded-2xl shadow-lg overflow-hidden">
+  <article class="bg-white rounded-2xl shadow-lg overflow-hidden" data-controller="open-modal">
     <!-- Post Header -->
     <div class="flex items-center p-4">
-      <% if @post.user.avatar.attached? %>
-        <%= image_tag @post.user.avatar.variant(resize_to_fill: [40, 40]),
-            class: "w-10 h-10 rounded-full object-cover" %>
-      <% else %>
-        <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center">
-          <span class="text-white font-medium"><%= @post.user.first_name[0] %></span>
-        </div>
-      <% end %>
+      <%= render "components/avatar", user: @post.user, size: :md %>
       <div class="ml-3">
         <p class="font-medium text-gray-800"><%= @post.user.full_name %></p>
         <p class="text-xs text-gray-500"><%= l @post.created_at, format: :long %></p>
@@ -25,31 +18,15 @@
 
     <!-- Post Image -->
     <% if @post.image.attached? %>
-      <%= image_tag @post.image.variant(resize_to_limit: [800, 800]),
-          class: "w-full" %>
+      <%= image_tag @post.image.variant(resize_to_limit: [800, 800]), class: "w-full" %>
     <% end %>
 
     <!-- Post Content -->
     <div class="p-4">
       <p class="text-gray-800 mb-4 text-lg"><%= @post.description %></p>
 
-      <div class="space-y-2 mb-4">
-        <div class="flex items-center bg-blue-50 rounded-lg p-3">
-          <span class="text-blue-600 font-medium w-32"><%= t("posts.specie") %>:</span>
-          <span class="text-gray-700"><%= @post.specie %></span>
-        </div>
-        <div class="flex items-center bg-green-50 rounded-lg p-3">
-          <span class="text-green-600 font-medium w-32"><%= t("posts.location") %>:</span>
-          <span class="text-gray-700"><%= @post.location %></span>
-        </div>
-        <div class="flex items-center bg-purple-50 rounded-lg p-3">
-          <span class="text-purple-600 font-medium w-32"><%= t("posts.rod") %>:</span>
-          <span class="text-gray-700"><%= @post.rod %></span>
-        </div>
-        <div class="flex items-center bg-orange-50 rounded-lg p-3">
-          <span class="text-orange-600 font-medium w-32"><%= t("posts.bait") %>:</span>
-          <span class="text-gray-700"><%= @post.bait %></span>
-        </div>
+      <div class="mb-4">
+        <%= render "components/post_details", post: @post, layout: :list %>
       </div>
 
       <!-- Like Button -->
@@ -66,3 +43,17 @@
     <% end %>
   </div>
 </div>
+
+<!-- Comments Modal -->
+<%= render "components/modal", id: "comments-modal", title: t("comments.title"), padding: false do %>
+  <div id="comments-modal-content" class="h-full flex flex-col overflow-hidden">
+    <!-- Content loaded via JavaScript -->
+  </div>
+<% end %>
+
+<!-- Likes Modal -->
+<%= render "components/modal", id: "likes-modal", title: t("likes.liked_by") do %>
+  <div id="likes-modal-content" class="overflow-y-auto">
+    <!-- Content loaded via JavaScript -->
+  </div>
+<% end %>

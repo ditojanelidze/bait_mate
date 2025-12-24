@@ -103,11 +103,15 @@ ka:
     delete_confirm: "წავშალოთ კომენტარი?"
     unauthorized: "თქვენ არ გაქვთ ამ მოქმედების უფლება"
     show_more: "მეტის ნახვა (%{count})"
+    no_comments: "კომენტარები ჯერ არ არის"
+    login_to_comment: "კომენტარის დასატოვებლად შედით სისტემაში"
 
   # Likes
   likes:
     like: "მოწონება"
     unlike: "მოწონების გაუქმება"
+    liked_by: "მოიწონეს"
+    no_likes: "ჯერ არავის მოუწონებია"
 
   # ActiveRecord errors
   errors:
@@ -172,7 +176,7 @@ ka:
       - ხუთშაბათი
       - პარასკევი
       - შაბათი
-    month_names:
+    abbr_month_names:
       - ~
       - იანვარი
       - თებერვალი

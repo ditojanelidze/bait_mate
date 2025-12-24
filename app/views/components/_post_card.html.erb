@@ -1,0 +1,44 @@
+<%# locals: (post:, show_comments: false) %>
+<article class="bg-white rounded-2xl shadow-lg overflow-hidden" data-controller="open-modal">
+  <!-- Post Header -->
+  <div class="flex items-center p-4">
+    <%= render "components/avatar", user: post.user, size: :md %>
+    <div class="ml-3">
+      <p class="font-medium text-gray-800"><%= post.user.full_name %></p>
+      <p class="text-xs text-gray-500"><%= l post.created_at, format: :short %></p>
+    </div>
+    <% if logged_in? && post.user_id == current_user.id %>
+      <div class="ml-auto">
+        <%= link_to edit_post_path(post), class: "text-gray-400 hover:text-blue-600" do %>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+          </svg>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Post Image -->
+  <% if post.image.attached? %>
+    <%= link_to post do %>
+      <%= image_tag post.image.variant(resize_to_limit: [800, 800]),
+          class: "w-full aspect-square object-cover" %>
+    <% end %>
+  <% end %>
+
+  <!-- Post Content -->
+  <div class="p-4">
+    <p class="text-gray-800 mb-3"><%= post.description %></p>
+
+    <%= render "components/post_details", post: post %>
+
+    <!-- Like Button and Comments -->
+    <div class="mt-4">
+      <%= render "likes/like_button", post: post %>
+    </div>
+
+    <% if show_comments %>
+      <%= render "comments/comments_section", post: post %>
+    <% end %>
+  </div>
+</article>
