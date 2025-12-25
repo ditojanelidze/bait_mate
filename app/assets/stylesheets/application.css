@@ -8,3 +8,39 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+/* Turbo Native - iOS Safe Area Support */
+.turbo-native {
+  /* Prevent text selection in native app */
+  -webkit-user-select: none;
+  user-select: none;
+
+  /* Prevent callout on long press */
+  -webkit-touch-callout: none;
+
+  /* Prevent highlight on tap */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Allow text selection in form inputs */
+.turbo-native input,
+.turbo-native textarea {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Safe area padding for header */
+.turbo-native .header-nav {
+  padding-top: env(safe-area-inset-top);
+}
+
+/* Safe area padding for bottom navigation */
+.turbo-native .mobile-nav {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Adjust main content padding for safe areas */
+.turbo-native main {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}

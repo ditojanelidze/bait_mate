@@ -1,11 +1,11 @@
 class ApplicationController < ActionController::Base
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
-  allow_browser versions: :modern
+  allow_browser versions: :modern, if: -> { !turbo_native_app? }
 
   # Changes to the importmap will invalidate the etag for HTML responses
   stale_when_importmap_changes
 
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?, :turbo_native_app?
 
   private
 
@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     current_user.present?
+  end
+
+  def turbo_native_app?
+    request.user_agent.to_s.include?("Turbo Native")
   end
 
   def require_login
