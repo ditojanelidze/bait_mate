@@ -41,6 +41,7 @@
 
 /* Adjust main content padding for safe areas */
 .turbo-native main {
+  padding-top: calc(5rem + env(safe-area-inset-top)) !important;
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
 }
