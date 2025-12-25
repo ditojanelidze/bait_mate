@@ -1,0 +1,60 @@
+<% content_for :head do %>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <style>
+    .leaflet-popup-content-wrapper {
+      border-radius: 8px;
+    }
+    .water-popup {
+      min-width: 150px;
+    }
+    .water-popup h3 {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: #1a1a1a;
+    }
+    .water-popup .water-type {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: capitalize;
+    }
+    .water-type-lake { background-color: #dbeafe; color: #1e40af; }
+    .water-type-river { background-color: #e0e7ff; color: #3730a3; }
+    .water-type-reservoir { background-color: #cffafe; color: #0e7490; }
+    .water-type-pond { background-color: #d1fae5; color: #047857; }
+    .water-type-stream { background-color: #ede9fe; color: #6d28d9; }
+    .water-type-canal { background-color: #fce7f3; color: #be185d; }
+    .water-type-spring { background-color: #ecfccb; color: #4d7c0f; }
+    .water-type-waterfall { background-color: #fee2e2; color: #b91c1c; }
+    .water-type-wetland { background-color: #f3e8ff; color: #7c3aed; }
+  </style>
+<% end %>
+
+<div class="px-4 py-2">
+  <h1 class="text-xl font-bold text-gray-900 mb-3">Fishing Waters</h1>
+
+  <div class="mb-3 flex flex-wrap gap-2">
+    <button type="button" data-filter="all" class="filter-btn active px-3 py-1 text-sm rounded-full bg-blue-600 text-white">
+      All
+    </button>
+    <% WaterBody::WATER_TYPES.each do |type| %>
+      <button type="button" data-filter="<%= type %>" class="filter-btn px-3 py-1 text-sm rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300">
+        <%= type.capitalize %>
+      </button>
+    <% end %>
+  </div>
+</div>
+
+<div id="map"
+     class="w-full"
+     style="height: calc(100vh - 200px); min-height: 400px;"
+     data-controller="map"
+     data-map-markers-value="<%= @markers.to_json %>"
+     data-map-center-lat-value="42.3154"
+     data-map-center-lng-value="43.3569"
+     data-map-zoom-value="7">
+</div>

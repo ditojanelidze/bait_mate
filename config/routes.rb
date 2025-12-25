@@ -41,6 +41,10 @@ Rails.application.routes.draw do
     end
   end
 
+  # Map
+  get "map", to: "map#index", as: :map
+  get "map/water_bodies", to: "map#water_bodies", as: :map_water_bodies
+
   # Posts (News Feed)
   resources :posts do
     resources :comments, only: [:index, :create, :destroy] do

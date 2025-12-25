@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_24_175931) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_25_161711) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -112,6 +112,24 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_24_175931) do
     t.datetime "verification_code_sent_at"
     t.boolean "verified", default: false, null: false
     t.index ["phone_number"], name: "index_users_on_phone_number", unique: true
+  end
+
+  create_table "water_bodies", force: :cascade do |t|
+    t.decimal "area"
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.jsonb "geometry"
+    t.string "geometry_type"
+    t.decimal "latitude", precision: 10, scale: 7, null: false
+    t.decimal "longitude", precision: 10, scale: 7, null: false
+    t.string "name", null: false
+    t.string "name_en"
+    t.bigint "osm_id", null: false
+    t.datetime "updated_at", null: false
+    t.string "water_type", null: false
+    t.index ["latitude", "longitude"], name: "index_water_bodies_on_latitude_and_longitude"
+    t.index ["osm_id"], name: "index_water_bodies_on_osm_id", unique: true
+    t.index ["water_type"], name: "index_water_bodies_on_water_type"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
