@@ -38,6 +38,8 @@
     <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.3.6, rbenv: 3.4.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="connection_pool (v3.0.2, rbenv: 3.4.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="crass (v1.0.6, rbenv: 3.4.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="database_cleaner-active_record (v2.2.2, rbenv: 3.4.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="database_cleaner-core (v2.0.1, rbenv: 3.4.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="date (v3.5.1, rbenv: 3.4.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.6.2, rbenv: 3.4.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dotenv (v3.2.0, rbenv: 3.4.4) [gem]" level="application" />
@@ -444,6 +446,13 @@
                   <RakeTaskImpl description="Install Turbo into the app with webpacker" fullCommand="turbo:install:node" id="node" />
                 </subtasks>
               </RakeTaskImpl>
+            </subtasks>
+          </RakeTaskImpl>
+          <RakeTaskImpl id="water_bodies">
+            <subtasks>
+              <RakeTaskImpl description="Clear all water bodies from the database" fullCommand="water_bodies:clear" id="clear" />
+              <RakeTaskImpl description="Fetch water bodies in Georgia from OpenStreetMap with full geometry" fullCommand="water_bodies:fetch" id="fetch" />
+              <RakeTaskImpl description="Show water body statistics" fullCommand="water_bodies:stats" id="stats" />
             </subtasks>
           </RakeTaskImpl>
           <RakeTaskImpl id="yarn">
