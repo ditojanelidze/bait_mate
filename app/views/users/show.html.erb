@@ -74,10 +74,7 @@
       <% end %>
     </div>
   <% else %>
-    <div class="bg-white p-8 text-center">
-      <%= inline_svg_tag "svg/empty-box.svg", class: "w-16 h-16 text-gray-300 mx-auto mb-4" %>
-      <p class="text-gray-500"><%= t("users.no_posts") %></p>
-    </div>
+    <%= render "components/empty_state", icon: "svg/empty-box.svg", message: t("users.no_posts") %>
   <% end %>
 </div>
 

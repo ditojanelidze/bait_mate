@@ -3,12 +3,7 @@
   <% if users.any? %>
     <div class="space-y-3">
       <% users.each do |user| %>
-        <%= link_to user_path(user), class: "flex items-center hover:bg-gray-50 p-2 rounded-lg -mx-2" do %>
-          <%= render "components/avatar", user: user, size: :md %>
-          <div class="ml-3 flex-1">
-            <p class="font-medium text-gray-800"><%= user.full_name %></p>
-          </div>
-        <% end %>
+        <%= render "components/user_list_item", user: user, show_following_status: false %>
       <% end %>
     </div>
   <% else %>

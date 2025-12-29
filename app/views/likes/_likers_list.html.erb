@@ -3,12 +3,7 @@
   <% if likers.any? %>
     <div class="space-y-3">
       <% likers.each do |user| %>
-        <div class="flex items-center">
-          <%= render "components/avatar", user: user, size: :md %>
-          <div class="ml-3">
-            <p class="font-medium text-gray-800"><%= user.full_name %></p>
-          </div>
-        </div>
+        <%= render "components/avatar", user: user, size: :md, show_name: true %>
       <% end %>
     </div>
   <% else %>

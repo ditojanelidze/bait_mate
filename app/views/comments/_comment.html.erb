@@ -1,14 +1,7 @@
 <%= turbo_frame_tag dom_id(comment) do %>
   <div class="flex space-x-3 py-3 border-b border-gray-100 last:border-0" id="<%= dom_id(comment) %>">
     <div class="flex-shrink-0">
-      <% if comment.user.avatar.attached? %>
-        <%= image_tag comment.user.avatar.variant(resize_to_fill: [32, 32]),
-            class: "w-8 h-8 rounded-full object-cover" %>
-      <% else %>
-        <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
-          <span class="text-white text-xs font-medium"><%= comment.user.first_name[0] %></span>
-        </div>
-      <% end %>
+      <%= render "components/avatar", user: comment.user, size: :sm %>
     </div>
     <div class="flex-1 min-w-0">
       <div class="flex items-center justify-between">

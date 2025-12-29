@@ -5,8 +5,10 @@
   <% end %>
 </div>
 <% if notifications.empty? %>
-  <div id="notifications_empty" class="p-8 text-center">
-    <%= inline_svg_tag "svg/bell.svg", class: "w-12 h-12 text-gray-300 mx-auto mb-3" %>
-    <p class="text-gray-500 text-sm"><%= t("notifications.empty") %></p>
+  <div id="notifications_empty">
+    <%= render "components/empty_state",
+        icon: "svg/bell.svg",
+        message: t("notifications.empty"),
+        icon_class: "w-12 h-12 text-gray-300 mx-auto mb-3" %>
   </div>
 <% end %>
