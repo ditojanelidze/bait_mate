@@ -1,0 +1,53 @@
+<div class="max-w-2xl mx-auto px-4">
+  <div class="flex items-center justify-between py-4 border-b border-gray-200">
+    <h1 class="text-xl font-semibold text-gray-800"><%= t("notifications.title") %></h1>
+    <% if @notifications.unread.any? %>
+      <%= button_to mark_all_read_notifications_path,
+          method: :post,
+          class: "text-sm text-blue-600 hover:text-blue-800 font-medium" do %>
+        <%= t("notifications.mark_all_read") %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="divide-y divide-gray-100">
+    <% if @notifications.any? %>
+      <% @notifications.each do |notification| %>
+        <%= link_to mark_read_notification_path(notification),
+            method: :post,
+            data: { turbo_method: :post },
+            class: "flex items-start p-4 #{notification.read? ? 'bg-white' : 'bg-blue-50'} hover:bg-gray-50" do %>
+          <div class="flex-shrink-0">
+            <%= render "components/avatar", user: notification.actor, size: :md %>
+          </div>
+          <div class="ml-3 flex-1 min-w-0">
+            <p class="text-gray-800">
+              <span class="font-medium"><%= notification.actor.full_name %></span>
+              <% case notification.notification_type %>
+              <% when "follow" %>
+                <%= t("notifications.follow_message") %>
+              <% when "like" %>
+                <%= t("notifications.like_message") %>
+              <% when "comment" %>
+                <%= t("notifications.comment_message") %>
+              <% end %>
+            </p>
+            <p class="text-sm text-gray-500 mt-1">
+              <%= time_ago_in_words(notification.created_at) %> <%= t("notifications.ago") %>
+            </p>
+          </div>
+          <% unless notification.read? %>
+            <div class="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0 mt-2"></div>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <div class="py-12">
+        <%= render "components/empty_state",
+            icon: "svg/bell.svg",
+            message: t("notifications.empty"),
+            icon_class: "w-16 h-16 text-gray-300 mx-auto mb-4" %>
+      </div>
+    <% end %>
+  </div>
+</div>

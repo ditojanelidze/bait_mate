@@ -119,6 +119,7 @@ ka:
     following: "გამოწერილი"
     follow: "გამოწერა"
     unfollow: "გამოწერის გაუქმება"
+    followed: "გამოწერილია"
     no_posts: "პოსტები ჯერ არ არის"
     no_followers: "გამომწერები ჯერ არ არის"
     no_following: "არავის მიჰყვება"
@@ -133,6 +134,7 @@ ka:
     like_message: "მოიწონა თქვენი პოსტი"
     comment_message: "დააკომენტარა თქვენი პოსტი"
     ago: "წინ"
+    see_all: "ყველა შეტყობინების ნახვა"
 
   # ActiveRecord errors
   errors:

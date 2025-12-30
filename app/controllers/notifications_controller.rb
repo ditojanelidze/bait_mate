@@ -3,9 +3,7 @@ class NotificationsController < ApplicationController
   before_action :set_notification, only: [ :mark_read ]
 
   def index
-    @notifications = current_user.notifications.recent.includes(actor: { avatar_attachment: :blob })
-
-    render partial: "notifications/list", locals: { notifications: @notifications }
+    @notifications = current_user.notifications.order(created_at: :desc).includes(actor: { avatar_attachment: :blob })
   end
 
   def mark_read

@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+  # Only allow access from the iOS app
+  # before_action :require_native_app
+
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern, if: -> { !turbo_native_app? }
 
@@ -25,6 +28,12 @@ class ApplicationController < ActionController::Base
     unless logged_in?
       flash[:alert] = I18n.t("auth.login_required")
       redirect_to new_session_path, status: :see_other
+    end
+  end
+
+  def require_native_app
+    unless turbo_native_app?
+      render plain: "This app is only available on iOS.", status: :forbidden
     end
   end
 end

@@ -1,0 +1,6 @@
+<%# locals: (message:, type: :notice) %>
+<div class="fixed top-20 left-4 right-4 z-40 <%= type == :notice ? 'bg-green-100 border-green-400 text-green-700' : 'bg-red-100 border-red-400 text-red-700' %> border px-4 py-3 rounded-lg shadow-lg"
+     data-controller="auto-dismiss"
+     data-auto-dismiss-delay-value="3000">
+  <%= message %>
+</div>
