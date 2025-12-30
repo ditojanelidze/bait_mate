@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :require_login, except: [ :index, :modal, :more ]
+  before_action :require_login
   before_action :set_post
 
   def index

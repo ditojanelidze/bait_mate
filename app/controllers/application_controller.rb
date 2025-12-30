@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   def require_login
     unless logged_in?
       flash[:alert] = I18n.t("auth.login_required")
-      redirect_to new_session_path
+      redirect_to new_session_path, status: :see_other
     end
   end
 end

@@ -25,6 +25,20 @@
   </head>
 
   <body class="bg-white min-h-screen <%= 'turbo-native' if turbo_native_app? %>" data-controller="header-scroll">
+    <% if turbo_native_app? %>
+      <script>
+        // Communicate auth state to native iOS app
+        (function() {
+          if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.nativeApp) {
+            window.webkit.messageHandlers.nativeApp.postMessage({
+              type: 'authState',
+              authenticated: <%= logged_in? ? 'true' : 'false' %>
+            });
+          }
+        })();
+      </script>
+    <% end %>
+
     <!-- Navigation -->
     <%= render "layouts/header_nav" %>
 

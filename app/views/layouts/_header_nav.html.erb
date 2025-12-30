@@ -4,7 +4,7 @@
     <div class="flex justify-between items-center h-12">
       <!-- Left spacer for centering -->
       <div class="flex items-center space-x-4 w-1/3">
-        <% if logged_in? %>
+        <% if logged_in? && !current_page?(edit_profile_path) %>
           <%= link_to new_post_path, class: "pl-3 text-gray-600 hover:text-blue-600" do %>
             <%= inline_svg_tag "svg/plus.svg", class: "w-6 h-6" %>
           <% end %>
@@ -20,11 +20,11 @@
 
       <!-- Navigation Links -->
       <div class="flex items-center justify-end space-x-4 w-1/3 pr-3">
-        <% if logged_in? %>
+        <% if logged_in? && !current_page?(edit_profile_path) %>
           <%= render "notifications/dropdown",
               notifications: current_user.notifications.recent.includes(:actor),
               unread_count: current_user.notifications.unread.count %>
-        <% else %>
+        <% elsif !logged_in? %>
           <% unless current_page?(new_session_path) || current_page?(new_registration_path) %>
             <%= link_to t("nav.login"), new_session_path, class: "text-m text-blue-500 hover:text-blue-200" %>
           <% end %>
