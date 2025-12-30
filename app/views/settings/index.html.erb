@@ -1,0 +1,39 @@
+<div class="max-w-2xl mx-auto px-4">
+  <!-- Settings Header -->
+  <div class="bg-white p-4 mb-4">
+    <h1 class="text-xl font-bold text-gray-800"><%= t("settings.title", default: "Settings") %></h1>
+  </div>
+
+  <!-- Settings List -->
+  <div class="bg-white rounded-lg divide-y divide-gray-100">
+    <!-- Edit Profile -->
+    <%= link_to edit_profile_path, class: "flex items-center justify-between p-4 hover:bg-gray-50 transition-colors" do %>
+      <div class="flex items-center space-x-3">
+        <%= inline_svg_tag "svg/user.svg", class: "w-6 h-6 text-gray-600" %>
+        <span class="text-gray-800"><%= t("settings.edit_profile", default: "Edit Profile") %></span>
+      </div>
+      <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    <% end %>
+
+    <!-- App Version -->
+    <div class="flex items-center justify-between p-4">
+      <div class="flex items-center space-x-3">
+        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <span class="text-gray-800"><%= t("settings.version", default: "Version") %></span>
+      </div>
+      <span class="text-gray-500">1.0.0</span>
+    </div>
+
+    <!-- Logout -->
+    <%= button_to logout_path, method: :delete, class: "w-full flex items-center justify-between p-4 hover:bg-red-50 transition-colors text-left", form: { class: "w-full" } do %>
+      <div class="flex items-center space-x-3">
+        <%= inline_svg_tag "svg/logout.svg", class: "w-6 h-6 text-red-600" %>
+        <span class="text-red-600 font-medium"><%= t("settings.logout", default: "Logout") %></span>
+      </div>
+    <% end %>
+  </div>
+</div>

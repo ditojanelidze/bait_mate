@@ -32,12 +32,12 @@
     <%= render "layouts/flash" %>
 
     <!-- Main Content -->
-    <main class="pt-16 pb-24 md:pb-8 max-w-7xl mx-auto">
+    <main class="pt-16 <%= turbo_native_app? ? 'pb-8' : 'pb-24 md:pb-8' %> max-w-7xl mx-auto">
       <%= yield %>
     </main>
 
-    <!-- Mobile Bottom Navigation -->
-    <% if logged_in? %>
+    <!-- Mobile Bottom Navigation (hidden in native app - native tab bar is used) -->
+    <% if logged_in? && !turbo_native_app? %>
       <%= render "layouts/mobile_nav" %>
     <% end %>
   </body>

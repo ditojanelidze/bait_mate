@@ -19,6 +19,9 @@ Rails.application.routes.draw do
 
   # Profile (own profile)
   get "profile", to: "profiles#show", as: :profile
+
+  # Settings
+  get "settings", to: "settings#index", as: :settings
   get "profile/edit", to: "profiles#edit", as: :edit_profile
   patch "profile", to: "profiles#update", as: :update_profile
 
